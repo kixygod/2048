@@ -11,7 +11,10 @@ export class Tile {
         this.tileElement.textContent = value;
         const bgLightness = 100 - Math.log2(value) * 9;
         this.tileElement.style.setProperty("--bg-lightness", `${bgLightness}%`);
-        this.tileElement.style.setProperty("--text-lightness", `${bgLightness < 50 ? 90 : 10}%`);
+        this.tileElement.style.setProperty(
+            "--text-lightness",
+            `${bgLightness < 50 ? 90 : 10}%`
+        );
     }
 
     setXY(x, y) {
@@ -26,16 +29,18 @@ export class Tile {
     }
 
     waitForTransitionEnd() {
-        return new Promise(resolve => {
-            this.tileElement.addEventListener(
-                "transitionend", resolve, { once: true });
+        return new Promise((resolve) => {
+            this.tileElement.addEventListener("transitionend", resolve, {
+                once: true,
+            });
         });
     }
 
     waitForAnimationEnd() {
-        return new Promise(resolve => {
-            this.tileElement.addEventListener(
-                "animationend", resolve, { once: true });
+        return new Promise((resolve) => {
+            this.tileElement.addEventListener("animationend", resolve, {
+                once: true,
+            });
         });
     }
 }

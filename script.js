@@ -8,7 +8,6 @@ grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 setupInputOnce();
 
-
 function setupInputOnce() {
     window.addEventListener("keydown", handleInput, { once: true });
 }
@@ -52,8 +51,8 @@ async function handleInput(event) {
     grid.getRandomEmptyCell().linkTile(newTile);
 
     if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
-        await newTile.waitForAnimationEnd()
-        alert("Try again!")
+        await newTile.waitForAnimationEnd();
+        alert("Try again!");
         return;
     }
 
@@ -79,11 +78,11 @@ async function moveRight() {
 async function slideTiles(groupedCells) {
     const promises = [];
 
-    groupedCells.forEach(group => slideTilesInGroup(group, promises));
+    groupedCells.forEach((group) => slideTilesInGroup(group, promises));
 
     await Promise.all(promises);
-    grid.cells.forEach(cell => {
-        cell.hasTileForMerge() && cell.mergeTiles()
+    grid.cells.forEach((cell) => {
+        cell.hasTileForMerge() && cell.mergeTiles();
     });
 }
 
@@ -135,7 +134,7 @@ function canMoveRight() {
 }
 
 function canMove(groupedCells) {
-    return groupedCells.some(group => canMoveInGroup(group));
+    return groupedCells.some((group) => canMoveInGroup(group));
 }
 
 function canMoveInGroup(group) {
